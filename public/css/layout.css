@@ -137,10 +137,9 @@
   height: 40px;
 }
 
-.go-cart:hover i{
+.go-cart:hover i {
   color: var(--main-color);
 }
-
 
 .go-cart i {
   color: #ccc;

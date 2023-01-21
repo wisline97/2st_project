@@ -147,12 +147,13 @@
       </div>
 
       <div class="product-rank-div">
-        <% for(i=0; i<4; i++){ 
-          var prd = prdList[i]
-          var price_sale = prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)) %>
+        <% for(i=0; i<4; i++){ var prd = prdList[i] var price_sale =
+        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)) %>
         <form action="addCartPro">
           <div class="product">
-            <a href="#"><img src=<%=prd['prd_img']%> /></a>
+            <a href="prdInfo?<%=prd['prd_No']%>"
+              ><img src=<%=prd['prd_img']%> /></a
+            >
             <button onclick="location.href='#'" type="submit" class="go-cart">
               <i class="fa-solid fa-cart-plus fa-lg"></i>
             </button>
@@ -161,8 +162,12 @@
             <a href="#"><p class="rank-txt-brand"><%=prd['brd_name']%></p></a>
             <a href="#"><p class="rank-subtxt"><%=prd['prd_name']%></p></a>
             <div class="price-container">
-              <p class="rank-subtxt price-sale"><%=prd['prd_discount_rate']%>% <%=price_sale.toLocaleString()%></p>
-              <p class="rank-subtxt price"><%=prd['prd_price'].toLocaleString()%></p>
+              <p class="rank-subtxt price-sale">
+                <%=prd['prd_discount_rate']%>% <%=price_sale.toLocaleString()%>
+              </p>
+              <p class="rank-subtxt price">
+                <%=prd['prd_price'].toLocaleString()%>
+              </p>
             </div>
             <div class="label">
               <%if (prd['prd_new']){%>
@@ -178,7 +183,9 @@
             <div class="review_score">
               <div class="review_score">
                 <i class="fa-solid fa-heart fa-sm"></i>
-                <p class="review_score_txt"><%=prd['prd_likesCount'].toLocaleString()%></p>
+                <p class="review_score_txt">
+                  <%=prd['prd_likesCount'].toLocaleString()%>
+                </p>
               </div>
             </div>
           </div>
@@ -196,9 +203,8 @@
         </div>
       </div>
       <div class="product-rank-div">
-        <% for(i=0; i<4; i++){ 
-          var prd = prdList[i]
-          var price_sale = prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)) %>
+        <% for(i=0; i<4; i++){ var prd = prdList[i] var price_sale =
+        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)) %>
         <form action="addCartPro">
           <div class="product">
             <a href="#"><img src=<%=prd['prd_img']%> /></a>
@@ -210,8 +216,12 @@
             <a href="#"><p class="rank-txt-brand"><%=prd['brd_name']%></p></a>
             <a href="#"><p class="rank-subtxt"><%=prd['prd_name']%></p></a>
             <div class="price-container">
-              <p class="rank-subtxt price-sale"><%=prd['prd_discount_rate']%>% <%=price_sale.toLocaleString()%></p>
-              <p class="rank-subtxt price"><%=prd['prd_price'].toLocaleString()%></p>
+              <p class="rank-subtxt price-sale">
+                <%=prd['prd_discount_rate']%>% <%=price_sale.toLocaleString()%>
+              </p>
+              <p class="rank-subtxt price">
+                <%=prd['prd_price'].toLocaleString()%>
+              </p>
             </div>
             <div class="label">
               <%if (prd['prd_new']){%>
@@ -227,7 +237,9 @@
             <div class="review_score">
               <div class="review_score">
                 <i class="fa-solid fa-heart fa-sm"></i>
-                <p class="review_score_txt"><%=prd['prd_likesCount'].toLocaleString()%></p>
+                <p class="review_score_txt">
+                  <%=prd['prd_likesCount'].toLocaleString()%>
+                </p>
               </div>
             </div>
           </div>

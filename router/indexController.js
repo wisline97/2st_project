@@ -30,4 +30,117 @@ module.exports = function (app) {
       res.render("index/index.ejs", renderData);
     });
   });
+
+  app.get("/best", function (req, res) {
+    var log = req.session.log;
+    var name = req.session.name;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql = "SELECT * FROM prdData ORDER BY prd_salesCount DESC";
+
+    conn.query(sql, function (error, rows) {
+      var renderData = {
+        log: log,
+        name: name,
+        prdList: rows,
+      };
+      conn.end();
+      res.render("index/best.ejs", renderData);
+    });
+  });
+
+  app.get("/hoodie", function (req, res) {
+    var log = req.session.log;
+    var name = req.session.name;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql = "SELECT * FROM prdData WHERE prd_kind like '%hoodie%'";
+
+    conn.query(sql, function (error, rows) {
+      var renderData = {
+        log: log,
+        name: name,
+        prdList: rows,
+      };
+      conn.end();
+      res.render("index/hoodie.ejs", renderData);
+    });
+  });
+
+  app.get("/handbag", function (req, res) {
+    var log = req.session.log;
+    var name = req.session.name;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql = "SELECT * FROM prdData WHERE prd_kind like '%bag%'";
+
+    conn.query(sql, function (error, rows) {
+      var renderData = {
+        log: log,
+        name: name,
+        prdList: rows,
+      };
+      conn.end();
+      res.render("index/handbag.ejs", renderData);
+    });
+  });
+
+  app.get("/beauty", function (req, res) {
+    var log = req.session.log;
+    var name = req.session.name;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql = "SELECT * FROM prdData WHERE prd_kind like '%beauty%'";
+
+    conn.query(sql, function (error, rows) {
+      var renderData = {
+        log: log,
+        name: name,
+        prdList: rows,
+      };
+      conn.end();
+      res.render("index/beauty.ejs", renderData);
+    });
+  });
+
+  app.get("/new", function (req, res) {
+    var log = req.session.log;
+    var name = req.session.name;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql = "SELECT * FROM prdData WHERE prd_new = True";
+
+    conn.query(sql, function (error, rows) {
+      var renderData = {
+        log: log,
+        name: name,
+        prdList: rows,
+      };
+      conn.end();
+      res.render("index/new.ejs", renderData);
+    });
+  });
+
+  app.get("/prdSearchPro", function (req, res) {
+    var log = req.session.log;
+    var name = req.session.name;
+    var searchItem = req.query.searchItem;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql = "SELECT * FROM prdData WHERE prd_kind like ?";
+    var inputData = ["%" + searchItem + "%"];
+
+    conn.query(sql, inputData, function (error, rows) {
+      var renderData = {
+        log: log,
+        name: name,
+        prdList: rows,
+        searchItem: searchItem,
+      };
+      conn.end();
+      res.render("index/prdSearch.ejs", renderData);
+    });
+  });
+
+  //module.exports 끝
 };
