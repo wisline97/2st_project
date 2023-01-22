@@ -42,12 +42,18 @@
         %>
         <form action="addCartPro">
           <div class="product">
-            <a href="#"><img src=<%=prd['prd_img']%> /></a>
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><img src=<%=prd['prd_img']%> /></a
+            >
             <button onclick="location.href='#'" type="submit" class="go-cart">
               <i class="fa-solid fa-cart-plus fa-lg"></i>
             </button>
-            <a href="#"><p class="rank-txt-brand"><%=prd['brd_name']%></p></a>
-            <a href="#"><p class="rank-subtxt"><%=prd['prd_name']%></p></a>
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><p class="rank-txt-brand"><%=prd['brd_name']%></p></a
+            >
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><p class="rank-subtxt"><%=prd['prd_name']%></p></a
+            >
             <div class="price-container">
               <p class="rank-subtxt price-sale">
                 <%=prd['prd_discount_rate']%>% <%=price_sale.toLocaleString()%>

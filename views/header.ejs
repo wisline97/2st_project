@@ -53,19 +53,23 @@
       </form>
       <div class="user">
         <ul>
-          <a href="#"
-            ><li><i class="fa-regular fa-heart"></i></li
-          ></a>
-          <a href="#"
-            ><li>
-              <i class="fa-solid fa-cart-plus"></i>
-              <p class="cart-count">장바구니 수량 영역</p>
-            </li></a
-          >
           <li>
+            <a href="#" class="cart">
+              <i class="fa-solid fa-cart-plus"></i>
+              <p class="cart-count"><%if (log == null){%> 0 <%}%></p>
+            </a>
+          </li>
+          <li class="userinfo">
+            <%if (log == null){%>
             <button class="enter" onclick="location.href='login'">
               입장하기
             </button>
+            <%} else{%>
+            <div class="loginTrue"><p><%=name[0]%></p></div>
+            &nbsp;&nbsp;
+            <button class="enter" onclick="location.href='logout'">
+              로그아웃</button
+            ><%}%>
           </li>
         </ul>
       </div>

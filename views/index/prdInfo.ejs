@@ -27,25 +27,75 @@
     ></script>
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/prdInfo.css" />
     <title>서울스토어</title>
   </head>
   <body>
-    <section class="product-info-left">
-      <div class="prdImg"></div>
-    </section>
+    <%- include ('../header.ejs') %>
+    <article class="product-info">
+      <section class="product-info-left">
+        <div class="prdImg"><img src="<%=prdList[0]['prd_img']%>" /></div>
+      </section>
 
-    <aside class="product-info-right">
-      <p class="prdName"></p>
-      <p class="prdLabel"></p>
-      <div class="prdPrice"></div>
-    </aside>
+      <aside class="product-info-right">
+        <p class="prdName"><%=prdList[0]['prd_name']%></p>
+        <p class="rank_underline"></p>
+        <div class="label">
+          <%if (prdList[0]['prd_new']){%>
+          <div class="new">
+            <p>신상</p>
+          </div>
+          <%} if (prdList[0]['prd_sale']){%>
+          <div class="sale1">
+            <p>세일</p>
+          </div>
+          <%}%>
+        </div>
+        <br />
+        <div class="prdPrice-box">
+          <div class="discount"><%=prdList[0]['prd_discount_rate']%>%</div>
+          <div class="prdPrice">
+            <p class="price-origin">
+              <%=prdList[0]['prd_price'].toLocaleString()%>
+            </p>
+            <p class="price_sale">
+              <% var price_sale = prdList[0]['prd_price'] -
+              (prdList[0]['prd_price']*(prdList[0]['prd_discount_rate']/100));
+              %> <%=price_sale.toLocaleString()%>
+            </p>
+            <p id="won">&nbsp;원</p>
+          </div>
+        </div>
+        <br /><br />
+        <img width="100%" src="img/delivery.JPG" />
+      </aside>
+    </article>
+    <p class="rank_underline"></p>
+    <article class="product-img">
+      <div class="prdImg">
+        <img src="<%=prdList[0]['prd_content']%>" width="100%" />
+      </div>
+    </article>
 
     <section class="product-info-bottom">
-      <form action="addLike">
-        <button>좋아요</button>
-      </form>
-      <form action="addCart">장바구니에 담기</form>
-      <form action="buyNow">바로구매</form>
+      <div class="product-info-bottom-align">
+        <form action="addLike">
+          <input type="hidden" name="prd_No" value="prdList[0]['prd_No']" />
+          <button type="submit" class="like btn">
+            <i class="fa-solid fa-heart prdinfo-i"></i>
+            <%=prdList[0]['prd_likesCount'].toLocaleString()%>
+          </button>
+        </form>
+        <div class="btn-align">
+          <form action="addCart">
+            <button class="btn purchase">장바구니에 담기</button>
+          </form>
+          &nbsp;
+          <form action="buyNow">
+            <button id="buy-now" class="btn purchase">바로구매</button>
+          </form>
+        </div>
+      </div>
     </section>
   </body>
 </html>

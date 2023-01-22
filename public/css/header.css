@@ -6,10 +6,6 @@ button {
   cursor: pointer;
 }
 
-body {
-  line-height: 1.5;
-}
-
 .search i {
   position: relative;
   left: 30px;
@@ -23,7 +19,6 @@ h3 {
 
 .top-banner-img {
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   background-color: rgb(26, 26, 26);
@@ -129,15 +124,21 @@ a {
 .etc {
   color: #ccc;
 }
-
+.cart {
+  position: relative;
+  top: 8px;
+  margin: 0;
+  height: 26px;
+}
 .cart-count {
   border: 1px solid white;
   position: relative;
   top: -15px;
   left: 8px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
   color: white;
   width: 15px;
@@ -148,14 +149,29 @@ a {
 }
 
 .loginTrue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   border: 2px solid black;
+  margin-right: 3px;
 }
 
 .loginTrue p {
   font-weight: bold;
   font-size: 14px;
   text-align: center;
+}
+
+.userinfo {
+  display: flex;
+  align-items: center;
+}
+
+.user ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,0 +1,118 @@
+@import url("https://webfontworld.github.io/pretendard/Pretendard.css");
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.product-info-bottom {
+  width: 100%;
+  border-top: 1px solid rgb(222, 222, 222);
+  padding: 15px 0;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+}
+
+.product-info-bottom-align {
+  width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-align {
+  display: flex;
+}
+
+.btn {
+  margin-bottom: 0;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid rgb(208, 208, 208);
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+  padding: 8px 15px;
+}
+
+.prdinfo-i {
+  color: rgb(136, 136, 136);
+}
+
+.purchase {
+  width: 177px;
+}
+
+#buy-now {
+  color: white;
+  background-color: #333333;
+}
+
+.product-info {
+  display: flex;
+  width: 1120px;
+  margin: 0 auto;
+}
+
+.product-info-left img {
+  width: 600px;
+}
+
+.product-info-right {
+  width: 520px;
+  font-family: "Pretendard";
+  line-height: 1.2;
+  letter-spacing: -1.1px;
+  padding-left: 50px;
+}
+
+.rank_underline {
+  margin: 20px 0;
+  border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+.prdPrice-box,
+.prdPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prdName {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.product-img {
+  width: 1120px;
+  margin: 0 auto;
+}
+
+.discount {
+  color: var(--main-color);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.price-origin {
+  color: #969696;
+  padding-bottom: 10px;
+  margin-right: 6px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: line-through;
+}
+
+.price_sale {
+  font-weight: 900;
+  font-size: 30px;
+}
+
+#won {
+  font-weight: 600;
+}

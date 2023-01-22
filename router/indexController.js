@@ -142,5 +142,25 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/prdInfo", function (req, res) {
+    var log = req.session.log;
+    var name = req.session.name;
+    var prd_No = req.query.prd_No;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql = "SELECT * FROM prdData WHERE prd_No = ?";
+    var inputData = [prd_No];
+
+    conn.query(sql, inputData, function (error, rows) {
+      var renderData = {
+        log: log,
+        name: name,
+        prdList: rows,
+      };
+      conn.end();
+      res.render("index/prdInfo.ejs", renderData);
+    });
+  });
+
   //module.exports 끝
 };

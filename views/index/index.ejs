@@ -147,11 +147,11 @@
       </div>
 
       <div class="product-rank-div">
-        <% for(i=0; i<4; i++){ var prd = prdList[i] var price_sale =
-        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)) %>
+        <% for(i=0; i<4; i++){ var prd = prdList[i]; var price_sale =
+        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)); %>
         <form action="addCartPro">
           <div class="product">
-            <a href="prdInfo?<%=prd['prd_No']%>"
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
               ><img src=<%=prd['prd_img']%> /></a
             >
             <button onclick="location.href='#'" type="submit" class="go-cart">
@@ -159,8 +159,12 @@
             </button>
             <p class="rank-txt"><%=i+1%>위</p>
             <p class="rank-underline"></p>
-            <a href="#"><p class="rank-txt-brand"><%=prd['brd_name']%></p></a>
-            <a href="#"><p class="rank-subtxt"><%=prd['prd_name']%></p></a>
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><p class="rank-txt-brand"><%=prd['brd_name']%></p></a
+            >
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><p class="rank-subtxt"><%=prd['prd_name']%></p></a
+            >
             <div class="price-container">
               <p class="rank-subtxt price-sale">
                 <%=prd['prd_discount_rate']%>% <%=price_sale.toLocaleString()%>
@@ -203,18 +207,24 @@
         </div>
       </div>
       <div class="product-rank-div">
-        <% for(i=0; i<4; i++){ var prd = prdList[i] var price_sale =
-        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)) %>
+        <% for(i=0; i<4; i++){ var prd = prdList[i]; var price_sale =
+        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)); %>
         <form action="addCartPro">
           <div class="product">
-            <a href="#"><img src=<%=prd['prd_img']%> /></a>
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><img src=<%=prd['prd_img']%> /></a
+            >
             <button onclick="location.href='#'" type="submit" class="go-cart">
               <i class="fa-solid fa-cart-plus fa-lg"></i>
             </button>
             <p class="rank-txt"><%=i+1%>위</p>
             <p class="rank-underline"></p>
-            <a href="#"><p class="rank-txt-brand"><%=prd['brd_name']%></p></a>
-            <a href="#"><p class="rank-subtxt"><%=prd['prd_name']%></p></a>
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><p class="rank-txt-brand"><%=prd['brd_name']%></p></a
+            >
+            <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
+              ><p class="rank-subtxt"><%=prd['prd_name']%></p></a
+            >
             <div class="price-container">
               <p class="rank-subtxt price-sale">
                 <%=prd['prd_discount_rate']%>% <%=price_sale.toLocaleString()%>
