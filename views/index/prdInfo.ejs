@@ -88,6 +88,12 @@
         </form>
         <div class="btn-align">
           <form action="addCart">
+            <input type="hidden" name="prdImg" value="<%=prdList[0]['prd_img']%>" />
+            <input type="hidden" name="prdName" value="<%=prdList[0]['prd_name']%>"/>
+            <input type="hidden" name="brdName" value="<%=prdList[0]['brd_name']%>"/>
+            <input type="hidden" name="prdSale" value="<%=prdList[0]['prd_sale']%>"/>
+            <input type="hidden" name="prdPrice" value="<%=prdList[0]['prd_price']%>"/>
+            <input type="hidden" name="prdDiscount" value="<%=prdList[0]['prd_discount_rate']%>"/>
             <button class="btn purchase">장바구니에 담기</button>
           </form>
           &nbsp;

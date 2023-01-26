@@ -16,6 +16,7 @@ module.exports = function (app) {
   app.get("/index", function (req, res) {
     var log = req.session.log;
     var name = req.session.name;
+    var cartLength = req.session.cartLength;
 
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData";
@@ -25,6 +26,7 @@ module.exports = function (app) {
         log: log,
         name: name,
         prdList: rows,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/index.ejs", renderData);
@@ -34,6 +36,7 @@ module.exports = function (app) {
   app.get("/best", function (req, res) {
     var log = req.session.log;
     var name = req.session.name;
+    var cartLength = req.session.cartLength;
 
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData ORDER BY prd_salesCount DESC";
@@ -43,6 +46,7 @@ module.exports = function (app) {
         log: log,
         name: name,
         prdList: rows,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/best.ejs", renderData);
@@ -52,6 +56,7 @@ module.exports = function (app) {
   app.get("/hoodie", function (req, res) {
     var log = req.session.log;
     var name = req.session.name;
+    var cartLength = req.session.cartLength;
 
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData WHERE prd_kind like '%hoodie%'";
@@ -61,6 +66,7 @@ module.exports = function (app) {
         log: log,
         name: name,
         prdList: rows,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/hoodie.ejs", renderData);
@@ -70,6 +76,7 @@ module.exports = function (app) {
   app.get("/handbag", function (req, res) {
     var log = req.session.log;
     var name = req.session.name;
+    var cartLength = req.session.cartLength;
 
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData WHERE prd_kind like '%bag%'";
@@ -79,6 +86,7 @@ module.exports = function (app) {
         log: log,
         name: name,
         prdList: rows,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/handbag.ejs", renderData);
@@ -88,6 +96,8 @@ module.exports = function (app) {
   app.get("/beauty", function (req, res) {
     var log = req.session.log;
     var name = req.session.name;
+    var cartLength = req.session.cartLength;
+
 
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData WHERE prd_kind like '%beauty%'";
@@ -97,6 +107,7 @@ module.exports = function (app) {
         log: log,
         name: name,
         prdList: rows,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/beauty.ejs", renderData);
@@ -106,6 +117,7 @@ module.exports = function (app) {
   app.get("/new", function (req, res) {
     var log = req.session.log;
     var name = req.session.name;
+    var cartLength = req.session.cartLength;
 
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData WHERE prd_new = True";
@@ -115,6 +127,7 @@ module.exports = function (app) {
         log: log,
         name: name,
         prdList: rows,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/new.ejs", renderData);
@@ -126,6 +139,8 @@ module.exports = function (app) {
     var name = req.session.name;
     var searchItem = req.query.searchItem;
 
+    var cartLength = req.session.cartLength;
+
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData WHERE prd_kind like ?";
     var inputData = ["%" + searchItem + "%"];
@@ -136,6 +151,7 @@ module.exports = function (app) {
         name: name,
         prdList: rows,
         searchItem: searchItem,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/prdSearch.ejs", renderData);
@@ -147,6 +163,8 @@ module.exports = function (app) {
     var name = req.session.name;
     var prd_No = req.query.prd_No;
 
+    var cartLength = req.session.cartLength;
+
     var conn = mysql.createConnection(conn_info);
     var sql = "SELECT * FROM prdData WHERE prd_No = ?";
     var inputData = [prd_No];
@@ -156,6 +174,7 @@ module.exports = function (app) {
         log: log,
         name: name,
         prdList: rows,
+        cartLength: cartLength
       };
       conn.end();
       res.render("index/prdInfo.ejs", renderData);

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/icon"
+      sizes="16x16"
+      href="https://www.seoulstore.com/images/favicon/favicon_16px.jpg"
+    />
+    <link
+      rel="icon"
+      type="image/icon"
+      sizes="32x32"
+      href="https://www.seoulstore.com/images/favicon/favicon_32px.jpg"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="https://www.seoulstore.com/images/favicon/favicon_152px.png"
+    />
+    <script
+      src="https://kit.fontawesome.com/0a218c2ef9.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <title>서울스토어</title>
+    <style>
+        hr{
+            height: 1px;
+            background-color: #eee;
+            border: 0;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h4{
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .cart-section{
+            display: flex;
+            flex-direction: row;
+            width: 1120px;
+            margin: 0 auto;
+        }
+
+        .left{
+            width: 70%;
+        }
+        .right{
+            width: 30%;
+        }
+
+        .cart-list-img{
+            width: 90px;
+            height: 90px;
+        }
+
+        .cart-prdinfo{
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .cart-list-txt{
+            width: 65%;
+            font-size: 16px;
+        }
+        .cart-list-brdname{
+            margin-bottom: 5px;
+        }
+        .cart-list-brdname{
+            font-weight: 600;
+        }
+
+        .pink {
+            color: #f70061;
+        }
+
+        .cart-prdprice{
+            display: flex;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .cart-prdprice p {
+            margin-right: 6px;
+        }
+
+        .prdprice_beforesale{
+            color: #999999;
+            font-weight: 800;
+        }
+
+        .btn {
+            position: relative;
+            top: -30px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 3px;
+            padding: 4px 10px;
+            background-color: white;
+            border: 1px solid #999999;
+        }
+
+        .purchase{
+            background-color: #333333;
+            color: white;
+            border: 1px solid #333333;
+        }
+
+        .purchase-info{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .padding{
+            padding-left: 30px;
+        }
+
+        .cartDB-count{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+    </style>
+  </head>
+  <body>
+    <%- include ('../header.ejs') %>
+    <h3 class="cart-section">장바구니</h3>
+    <section class="cart-section">
+        <section class="left">
+            <div class="cart-section-top">
+                <!--반복문 안에 들어가지 않는 부분-->
+                <br/>
+                <div class="cartDB-count">
+                    <h4>구매 가능한 상품&nbsp;</h4>
+                    <h4 class="pink"><%= cartList.length %></h4>
+                </div>
+                <hr>
+            </div>
+            <!--반복문 시작-->
+            <% 
+                var total = 0; 
+                var purchaseTotal = 0;
+                var discountTotal = 0;
+            %>
+            <%for(i=0; i<cartList.length; i++){ 
+                var discountPrice = cartList[i]['cartBuyPrdPrice'] - (cartList[i]['cartBuyPrdPrice']*(cartList[i]['cartPrdDiscount']/100)) ;
+                var cartNo = cartList[i]['cartNo'];
+                total += cartList[i]['cartBuyPrdPrice'];
+                purchaseTotal += discountPrice;
+                discountTotal += cartList[i]['cartBuyPrdPrice']*(cartList[i]['cartPrdDiscount']/100);
+                %>
+
+                <div class="cart-list">
+                    <div class="cart-prdinfo">
+                        <img class="cart-list-img" src="<%= cartList[i]['cartPrdImage'] %>">
+                        <div class="cart-list-txt">
+                            <p class="cart-list-brdname"><%= cartList[i]['cartBrdName'] %></p>
+                            <p class="cart-list-prdname"><%= cartList[i]['cartPrdName'] %></p>
+                        </div>
+                        <div class="cart-list-btn">
+                            <button class="btn purchase">바로구매</button>
+                            <button onclick="location.href='deleteCart?cartNo=<%= cartNo %>'" class="btn">삭제하기</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="cart-prdprice">
+                        <p class="discount_rate pink"><%= cartList[i]['cartPrdDiscount'] %>%</p>
+                        <p class="prdprice_aftersale pink"><%= discountPrice.toLocaleString() %></p>
+                        <p class="prdprice_beforesale"><%= cartList[i]['cartBuyPrdPrice'].toLocaleString() %></p>
+                    </div>
+                    <hr>
+                </div>
+            <%}%>
+            <!--반복문 끝-->
+        </section>
+        <section class="right">
+            <div class="padding">
+                <h4>나의 결제 예상 금액은?</h4>
+                <div class="purchase-info">
+                    <p>주문상품 수</p>
+                    <p><%= cartList.length %> 개</p>
+                </div>
+                <div class="purchase-info">
+                    <p>주문금액</p>
+                    <p><%=total.toLocaleString()%> 원</p>
+                </div>
+                <div class="purchase-info">
+                    <p>할인금액</p>
+                    <p class="pink">- <%=discountTotal.toLocaleString()%> 원</p>
+                </div>
+                <div class="purchase-info bold">
+                    <p>결제 예상 금액</p>
+                    <p><%=purchaseTotal.toLocaleString()%> 원</p>
+                </div>
+            </div>
+        </section>
+    </section>
+    <%- include ('../footer.ejs') %>
+  </body>
+</html>

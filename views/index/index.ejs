@@ -145,11 +145,17 @@
           <i class="fa-solid fa-arrow-right"></i>
         </div>
       </div>
-
+      
       <div class="product-rank-div">
         <% for(i=0; i<4; i++){ var prd = prdList[i]; var price_sale =
         prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)); %>
-        <form action="addCartPro">
+        <form action="addCart">
+          <input type="hidden" name="prdImg" value="<%=prd['prd_img']%>" />
+          <input type="hidden" name="prdName" value="<%=prd['prd_name']%>"/>
+          <input type="hidden" name="brdName" value="<%=prd['brd_name']%>"/>
+          <input type="hidden" name="prdSale" value="<%=prd['prd_sale']%>"/>
+          <input type="hidden" name="prdPrice" value="<%=prd['prd_price']%>"/>
+          <input type="hidden" name="prdDiscount" value="<%=prd['prd_discount_rate']%>"/>
           <div class="product">
             <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
               ><img src=<%=prd['prd_img']%> /></a
@@ -207,9 +213,16 @@
         </div>
       </div>
       <div class="product-rank-div">
-        <% for(i=0; i<4; i++){ var prd = prdList[i]; var price_sale =
-        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100)); %>
-        <form action="addCartPro">
+        <%rank = 1%>
+        <% for(i=4; i<8; i++){ var prd = prdList[i]; var price_sale =
+        prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100));%>
+        <form action="addCart">
+          <input type="hidden" name="prdImg" value="<%=prd['prd_img']%>" />
+          <input type="hidden" name="prdName" value="<%=prd['prd_name']%>"/>
+          <input type="hidden" name="brdName" value="<%=prd['brd_name']%>"/>
+          <input type="hidden" name="prdSale" value="<%=prd['prd_sale']%>"/>
+          <input type="hidden" name="prdPrice" value="<%=prd['prd_price']%>"/>
+          <input type="hidden" name="prdDiscount" value="<%=prd['prd_discount_rate']%>"/>
           <div class="product">
             <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
               ><img src=<%=prd['prd_img']%> /></a
@@ -217,7 +230,8 @@
             <button onclick="location.href='#'" type="submit" class="go-cart">
               <i class="fa-solid fa-cart-plus fa-lg"></i>
             </button>
-            <p class="rank-txt"><%=i+1%>위</p>
+            <p class="rank-txt"><%=rank%>위</p>
+            <%rank = rank + 1%>
             <p class="rank-underline"></p>
             <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
               ><p class="rank-txt-brand"><%=prd['brd_name']%></p></a

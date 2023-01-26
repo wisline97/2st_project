@@ -54,9 +54,12 @@
       <div class="user">
         <ul>
           <li>
-            <a href="#" class="cart">
+            <a href="cart" class="cart">
               <i class="fa-solid fa-cart-plus"></i>
-              <p class="cart-count"><%if (log == null){%> 0 <%}%></p>
+              <p class="cart-count"><%if (log == null){%> 0 <%} else{%>
+                <%= cartLength %>
+              <%}%>
+              </p>
             </a>
           </li>
           <li class="userinfo">

@@ -40,7 +40,13 @@
         <% for(i=0; i<prdList.length; i++){ var prd = prdList[i]; var price_sale
         = prd['prd_price'] - (prd['prd_price']*(prd['prd_discount_rate']/100));
         %>
-        <form action="addCartPro">
+        <form action="addCart">
+          <input type="hidden" name="prdImg" value="<%=prd['prd_img']%>" />
+          <input type="hidden" name="prdName" value="<%=prd['prd_name']%>"/>
+          <input type="hidden" name="brdName" value="<%=prd['brd_name']%>"/>
+          <input type="hidden" name="prdSale" value="<%=prd['prd_sale']%>"/>
+          <input type="hidden" name="prdPrice" value="<%=prd['prd_price']%>"/>
+          <input type="hidden" name="prdDiscount" value="<%=prd['prd_discount_rate']%>"/>
           <div class="product">
             <a href="prdInfo?prd_No=<%=prd['prd_No']%>"
               ><img src=<%=prd['prd_img']%> /></a

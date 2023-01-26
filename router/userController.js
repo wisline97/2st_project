@@ -33,7 +33,7 @@ module.exports = function (app) {
       var location = "";
 
       if (rows[0] == null) {
-        location = "new";
+        location = "login";
       } else {
         var memberName = rows[0].memberName;
 
@@ -55,5 +55,29 @@ module.exports = function (app) {
 
   app.get("/join", function (req, res) {
     res.render("user/join.ejs");
+  });
+
+  app.get("/joinPro", function(req, res){
+    var log = req.session.log;
+    var userId = req.query.userId;
+    var userPw = req.query.userPw;
+    var userName = req.query.userName;
+    var userEmail = req.query.userEmail;
+
+    var conn = mysql.createConnection(conn_info);
+    var sql1 = "SELECT MAX(memberNo) FROM userdata";
+
+    conn.query(sql1, function(error, rows) {
+        var json = JSON.stringify(rows);
+        var data = JSON.parse(json);
+        var memberNo = data[0]["MAX(memberNo)"] + 1;
+        
+        var sql2 = "INSERT INTO userdata VALUES(?, ?, ?, ?, ?)";
+        var inputData = [memberNo, userId, userPw, userName, userEmail];
+        conn.query(sql2, inputData, function(error) {
+            conn.end();
+            res.redirect("login"); 
+        });
+    });
   });
 };

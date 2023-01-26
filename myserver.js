@@ -22,6 +22,7 @@ app.use(
 
 require("./router/indexController")(app);
 require("./router/userController")(app);
+require("./router/cartController")(app);
 
 app.get("/", function (req, res) {
   req.session.log = null;
