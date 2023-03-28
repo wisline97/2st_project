@@ -5,21 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      rel="icon"
-      type="image/icon"
-      sizes="16x16"
-      href="https://www.seoulstore.com/images/favicon/favicon_16px.jpg"
-    />
-    <link
-      rel="icon"
-      type="image/icon"
-      sizes="32x32"
-      href="https://www.seoulstore.com/images/favicon/favicon_32px.jpg"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="https://www.seoulstore.com/images/favicon/favicon_152px.png"
+    rel="icon"
+    type="image/icon"
+    href="https://www.seoulstore.com/favicon.ico"
     />
     <script
       src="https://kit.fontawesome.com/0a218c2ef9.js"
@@ -81,7 +69,7 @@
       <div class="product-info-bottom-align">
         <form action="addLike">
           <input type="hidden" name="prd_No" value="prdList[0]['prd_No']" />
-          <button type="submit" class="like btn">
+          <button disabled="disabled" type="submit" class="like btn">
             <i class="fa-solid fa-heart prdinfo-i"></i>
             <%=prdList[0]['prd_likesCount'].toLocaleString()%>
           </button>
